@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Mantenimiento de programacion</title>
+</head>
+<body>
+<nav th:replace="layout::menu"></nav>
+<script th:src="@{/js/web/backoffice/pprogramacion/frmprogramacion.js}" type="text/javascript"></script>
+<div class="main-content">
+    <div class="card">
+        <div class="card-header">
+            Mantenimiento de Programacion
+        </div>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary" id="btnagregar" data-toggle="modal" data-target="#modalprogramacion">Agregar</button>
+            <hr />
+            <div id="divmensaje"></div>
+            <table id="tblprogramacion" class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Sede</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora Programada</th>
+                    <th scope="col">Actualizar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="programacion :${listprogramacion}">
+                    <td th:text="${programacion.programacionid}"></td>
+                    <td th:text="${programacion.nombresede}"></td>
+                    <td th:text="${programacion.fecha}"></td>
+                    <td th:text="${programacion.horaprogramada}"></td>
+                    <td>
+                        <button type="button" class="btn btn-info btnactualizar"
+                                data-toggle="modal" data-target="#modalProgramacion"
+                                th:data-progcod="${programacion.programacionid}"
+                                th:data-progsede="${programacion.sedeid}"
+                                th:data-progfecha="${programacion.fecha}"
+                                th:data-proghoraprogramada="${programacion.horaprogramada}">Actualizar</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalprogramacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Programacion</h1></div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="cbosede">Seleccione una sede</label>
+                    <select id="cbosede" class="form-control"></select>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="txtfecha" placeholder="Selecciona una fecha">
+                    <label for="txtfecha">Seleccione una fecha</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="time" class="form-control" id="txthoraprogramada" placeholder="Hora Programada">
+                    <label for="txthoraprogramada">Hora Programada</label>
+                </div>
+                <input type="hidden" id="hddcodprog" value="0">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button id="btnguardar" type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

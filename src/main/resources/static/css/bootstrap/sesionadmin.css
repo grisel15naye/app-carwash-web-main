@@ -1,0 +1,148 @@
+/* Estilos para la barra de navegación lateral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-lateral {
+    width: 250px;
+    background-color: #343a40;
+    padding: 20px;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto; /* Permite scroll cuando el contenido es más largo que la altura */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+    margin-left: 250px; /* Ancho del menú lateral */
+    padding: 20px;
+
+}
+.feed {
+    background-color: white;
+    width: 100%;
+    max-width: 100%; /* Añadir para limitar el ancho máximo */
+    padding: 20px; /* Aumentar el padding para más espacio */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Añadir para centrar el contenido */
+}
+
+.feed .logo {
+    max-width: 100%; /* Asegurar que la imagen no se extienda más allá del contenedor */
+    height: auto;
+    max-height: 300px; /* Establecer una altura máxima para la imagen */
+}
+
+.navbar-lateral h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #f8f9fa;
+}
+
+.nav-lateral-list-menu ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.nav-lateral-list-menu ul li {
+    margin-bottom: 10px;
+}
+
+.dropdown-menu-button {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #495057;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.dropdown-menu-button:hover {
+    background-color: #6c757d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-lateral-list-menu ul ul {
+    display: none;
+    padding-left: 20px;
+}
+
+.nav-lateral-list-menu ul li:hover > ul {
+    display: block;
+}
+
+.nav-lateral-list-menu a {
+    text-decoration: none;
+    color: #adb5bd;
+    display: block;
+    padding: 8px 0;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.nav-lateral-list-menu a:hover {
+    color: #ffffff;
+    background-color: #495057;
+    border-radius: 5px;
+}
+
+.navbar-lateral {
+    width: 250px;
+    background-color: #000000;
+    padding: 20px;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+
+}
+.nav-lateral-list-menu ul {
+    padding: 0;
+    list-style-type: none;
+}
+.nav-lateral-list-menu ul li {
+    margin-bottom: 10px;
+}
+.dropdown-menu-button {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #495057;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+.dropdown-menu-button:hover {
+    background-color: #6c757d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.nav-lateral-list-menu ul ul {
+    display: none;
+    padding-left: 20px;
+}
+.nav-lateral-list-menu ul li:hover > ul {
+    display: block;
+}
+.nav-lateral-list-menu a {
+    text-decoration: none;
+    color: #adb5bd;
+    display: block;
+    padding: 8px 0;
+    transition: color 0.3s, background-color 0.3s;
+}
+.nav-lateral-list-menu a:hover {
+    color: #ffffff;
+    background-color: #495057;
+    border-radius: 5px;
+}
+

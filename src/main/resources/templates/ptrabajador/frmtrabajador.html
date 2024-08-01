@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Mantenimiento de Trabajador</title>
+</head>
+<body>
+<nav th:replace="layout::menu"></nav>
+<script th:src="@{/js/web/backoffice/ptrabajador/frmtrabajador.js}" type="text/javascript"></script>
+<div class="main-content">
+    <div class="card">
+        <div class="card-header">
+            Mantenimiento de Trabajadores
+        </div>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary" id="btnagregar" data-toggle="modal" data-target="#modaltrabajador">Agregar</button>
+            <hr />
+            <div id="divmensaje"></div>
+            <table id="tbltrabajador" class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Tipo Documento</th>
+                    <th scope="col">Numero Documento</th>
+                    <th scope="col">Sede</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col">Salario</th>
+                    <th scope="col">Fecha Contratación</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Actualizar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="trabajador : ${listtrabajador}">
+                    <td th:text="${trabajador.trabajadorid}"></td>
+                    <td th:text="${trabajador.nombre}"></td>
+                    <td th:text="${trabajador.apellido}"></td>
+                    <td th:text="${trabajador.tipodocumento}"></td>
+                    <td th:text="${trabajador.numerodocumento}"></td>
+                    <td th:text="${trabajador.nombresede}"></td>
+                    <td th:text="${trabajador.telefono}"></td>
+                    <td th:text="${trabajador.direccion}"></td>
+                    <td th:text="${trabajador.salario}"></td>
+                    <td th:text="${trabajador.fechacontratacion}"></td>
+                    <td th:text="${trabajador.estadotrab}"></td>
+                    <td>
+                        <button type="button" class="btn btn-info btnactualizar"
+                                data-toggle="modal" data-target="#modaltrabajador"
+                                th:data-trabcod="${trabajador.trabajadorid}"
+                                th:data-trabnombre="${trabajador.nombre}"
+                                th:data-trabapellido="${trabajador.apellido}"
+                                th:data-trabtipodocumento="${trabajador.tipodocumento}"
+                                th:data-trabnumerodocumento="${trabajador.numerodocumento}"
+                                th:data-trabsede="${trabajador.nombresede}"
+                                th:data-trabtelefono="${trabajador.telefono}"
+                                th:data-trabdireccion="${trabajador.direccion}"
+                                th:data-trabsalario="${trabajador.salario}"
+                                th:data-trabfechacontratacion="${trabajador.fechacontratacion}"
+                                th:data-trabestadotrab="${trabajador.estadotrab}">Actualizar</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modaltrabajador" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Trabajador</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="txtnombre" placeholder="Nombre">
+                        <label for="txtnombre">Nombre</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="txtapellido" placeholder="Apellido">
+                        <label for="txtapellido">Apellido</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-control" id="txttipodocumento">
+                            <option value="true">DNI</option>
+                            <option value="false">Pasaporte</option>
+                        </select>
+                        <label for="txttipodocumento">Tipo Documento</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="txtnumerodocumento" placeholder="Numero Documento">
+                        <label for="txtnumerodocumento">Numero Documento</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cbosede">Seleccione una sede</label>
+                        <select id="cbosede" class="form-control"></select>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="txttelefono" placeholder="Telefono">
+                        <label for="txttelefono">Telefono</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="txtdireccion" placeholder="Direccion">
+                        <label for="txtdireccion">Direccion</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="txtsalario" placeholder="Salario">
+                        <label for="txtsalario">Salario</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="txtfechacontratacion" placeholder="Fecha de Contratación">
+                        <label for="txtfechacontratacion">Fecha de Contratación</label>
+                    </div>
+                    <div class="form-check form-switch" id="switchtrabajador">
+                        <input class="form-check-input" type="checkbox" role="switch" id="cbestadotrabajador">
+                        <label class="form-check-label" for="cbestadotrabajador">Estado del Trabajador</label>
+                    </div>
+                    <input type="hidden" id="hddcodtrab" value="0">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button id="btnguardar" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

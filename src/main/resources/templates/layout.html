@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>CARWASH</title>
+    <link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{/css/bootstrap/sesionadmin.css}" rel="stylesheet" />
+    <link th:href="@{/css/bootstrap/styles.css}" rel="stylesheet" />
+    <script th:src="@{/js/jquery/jquery.js}" type="text/javascript"></script>
+    <script th:src="@{/js/bootstrap/bootstrap.bundle.js}" type="text/javascript"></script>
+</head>
+<body>
+<nav th:fragment="menu" class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="navbar-lateral">
+        <h1>Bienvenido Administrador</h1>
+        <div class="nav-lateral-list-menu">
+            <ul class="list-unstyled">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Mis Datos</a></li>
+                <li>
+                    <div class="dropdown-menu-button">CLIENTE</div>
+                    <ul class="list-unstyled">
+                        <li><a class="list-unstyled" th:href="@{/clientes}">Ver Sedes</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="dropdown-menu-button">SEDE</div>
+                    <ul class="list-unstyled">
+                        <li><a class="list-unstyled" th:href="@{/sedes}">Ver Sedes</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="dropdown-menu-button">TRABAJADORES</div>
+                    <ul class="list-unstyled">
+                        <li><a class="list-unstyled" th:href="@{/trabajadores}">Ver Trabajadores</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="dropdown-menu-button">PROGRAMACION</div>
+                    <ul class="list-unstyled">
+                        <li><a class="list-unstyled" th:href="@{/programaciones}">Ver Programacion</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <button class="btn btn-success" type="button">Cerrar Sesión</button>
+            </form>
+        </div>
+    </div>
+</nav>
+</body>
+</html>
