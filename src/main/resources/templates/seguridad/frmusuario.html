@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script th:src="@{/js/web/backoffice/seguridad/frmusuario.js}"
+        type="text/javascript"></script>
+<nav th:replace="layout::menu"></nav>
+<div class="card">
+    <div class="card-header">
+        Mantenimiento de Usuarios
+    </div>
+    <div class="card-body">
+        <button type="button" class="btn btn-primary" id="btnagregar">Agregar</button>
+        <hr />
+        <div id="divmensaje"></div>
+        <table id="tblusuarios" class="table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Email</th>
+                <th scope="col">Activo</th>
+                <th scope="col">Actualizar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="usuario :${listausuarios}">
+                <td th:text="${usuario.idusuario}"></td>
+                <td th:text="${usuario.nombres}"></td>
+                <td th:text="${usuario.apellidos}"></td>
+                <td th:text="${usuario.email}"></td>
+                <td th:text="${usuario.activo}"></td>
+                <td>
+                    <button type="button" class="btn btn-info btnactualizar"
+                            th:data-idusuario="${usuario.idusuario}">
+                        Actualizar</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalNuevo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Usuario</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control"
+                           id="txtnombre" placeholder="name@example.com">
+                    <label for="txtnombre">Nombres</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control"
+                           id="txtapellido" placeholder="name@example.com">
+                    <label for="txtapellido">Apellidos</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control"
+                           id="txtemail" placeholder="name@example.com">
+                    <label for="txtemail">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control"
+                           id="txtusuario" placeholder="name@example.com">
+                    <label for="txtusuario">Usuario</label>
+                </div>
+                <div class="mb-3" id="divmensajepassword">
+                    <label class="form-label">Su password será enviado al correo indicado</label>
+                </div>
+
+                <div class="form-check form-switch" id="switchusuario">
+                    <input class="form-check-input" type="checkbox"
+                           role="switch" id="cbactivo">
+                    <label class="form-check-label" for="cbactivo">
+                        Activo</label>
+                </div>
+                <input type="hidden" id="hddidusuario" value="0">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cerrar</button>
+                <button id="btnguardar"
+                        type="button" class="btn btn-primary">Guardar</button>
+                <button id="btnenviar"
+                        type="button" class="btn btn-primary">Enviar Password</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
