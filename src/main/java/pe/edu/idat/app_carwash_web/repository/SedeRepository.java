@@ -15,12 +15,19 @@ public interface SedeRepository extends JpaRepository<Sede,Integer> {
     @Modifying
     @Transactional
     @Query(value = "UPDATE sede SET nombresede=:nombresede, sedeinfo=:sedeinfo, " +
-            "dia=:dia, horaabierto=:horaabierto, " +
+            "lunes=:lunes, martes=:martes, miercoles=:miercoles, jueves=:jueves, " +
+            "viernes=:viernes, sabado=:sabado, domingo=:domingo, horaabierto=:horaabierto, " +
             "horacierre=:horacierre, estadosede=:estadosede, where sedeid=:sedeid ",nativeQuery = true)
     void actualizarSede(@Param("sedeid") Integer sedeid,
                         @Param("nombresede")String nombresede,
                         @Param("sedeinfo")String sedeinfo,
-                        @Param("dia")String dia,
+                        @Param("lunes")boolean lunes,
+                        @Param("martes")boolean martes,
+                        @Param("miercoles")boolean miercoles,
+                        @Param("jueves")boolean jueves,
+                        @Param("viernes")boolean viernes,
+                        @Param("sabado")boolean sabado,
+                        @Param("domingo")boolean domingo,
                         @Param("horaabierto")LocalTime horaabierto,
                         @Param("horacierre")LocalTime horacierre,
                         @Param("estadosede")boolean estadosede);

@@ -16,7 +16,13 @@ public class Sede {
     private Integer sedeid;
     private String nombresede;
     private String sedeinfo;
-    private String dia;
+    private boolean lunes;
+    private boolean martes;
+    private boolean miercoles;
+    private boolean jueves;
+    private boolean viernes;
+    private boolean sabado;
+    private boolean domingo;
     private LocalTime horaabierto;
     private LocalTime horacierre;
     private boolean estadosede;

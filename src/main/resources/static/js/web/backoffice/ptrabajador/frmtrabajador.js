@@ -116,6 +116,3 @@ function listarTrabSede(idsed){
     }
     });
 }
-
-
-

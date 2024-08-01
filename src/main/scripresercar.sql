@@ -27,7 +27,6 @@ CREATE TABLE IF NOT EXISTS `resercarbd`.`acciones` (
   `estadoacc` BIT(1) NOT NULL,
   PRIMARY KEY (`accionesID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -68,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `resercarbd`.`cliente` (
   `clienteID` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
   `apellido` VARCHAR(100) NULL DEFAULT NULL,
-  `tipodocumento` BIT(1) NULL DEFAULT NULL,
+  `tipodocumento` VARCHAR(50) NULL DEFAULT NULL,
   `numerodocumento` INT NULL DEFAULT NULL,
   `telefono` INT NULL DEFAULT NULL,
   `direccion` VARCHAR(200) NULL DEFAULT NULL,
@@ -76,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `resercarbd`.`cliente` (
   `estadocliente` BIT(1) NOT NULL,
   PRIMARY KEY (`clienteID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -104,10 +103,9 @@ DEFAULT CHARACTER SET = utf8mb3;
 CREATE TABLE IF NOT EXISTS `resercarbd`.`marca` (
   `marcaID` INT NOT NULL AUTO_INCREMENT,
   `marcainfo` VARCHAR(45) NOT NULL,
-  `tipodevehiculo` VARCHAR(45) NULL,
+  `tipodevehiculo` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`marcaID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -124,7 +122,6 @@ CREATE TABLE IF NOT EXISTS `resercarbd`.`modelo` (
     FOREIGN KEY (`marcaID`)
     REFERENCES `resercarbd`.`marca` (`marcaID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 1
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -135,12 +132,20 @@ CREATE TABLE IF NOT EXISTS `resercarbd`.`sede` (
   `sedeID` INT NOT NULL AUTO_INCREMENT,
   `nombresede` VARCHAR(100) NOT NULL,
   `sedeinfo` VARCHAR(100) NULL DEFAULT NULL,
-  `dia` VARCHAR(100) NULL DEFAULT NULL,
+  `sedecol` VARCHAR(45) NULL DEFAULT NULL,
+  `lunes` TINYINT(1) NULL DEFAULT NULL,
+  `martes` TINYINT(1) NULL DEFAULT NULL,
+  `miercoles` TINYINT(1) NULL DEFAULT NULL,
+  `jueves` TINYINT(1) NULL DEFAULT NULL,
+  `viernes` TINYINT(1) NULL DEFAULT NULL,
+  `sabado` TINYINT(1) NULL DEFAULT NULL,
+  `domingo` TINYINT(1) NULL DEFAULT NULL,
   `horaabierto` TIME NULL DEFAULT NULL,
   `horacierre` TIME NULL DEFAULT NULL,
   `estadosede` BIT(1) NOT NULL,
   PRIMARY KEY (`sedeID`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -237,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `resercarbd`.`trabajador` (
   `trabajadorID` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NULL DEFAULT NULL,
   `apellido` VARCHAR(100) NULL DEFAULT NULL,
-  `tipodocumento` BIT(1) NULL DEFAULT NULL,
+  `tipodocumento` VARCHAR(50) NULL DEFAULT NULL,
   `numerodocumento` INT NULL DEFAULT NULL,
   `sedeID` INT NULL DEFAULT NULL,
   `telefono` INT NULL DEFAULT NULL,
