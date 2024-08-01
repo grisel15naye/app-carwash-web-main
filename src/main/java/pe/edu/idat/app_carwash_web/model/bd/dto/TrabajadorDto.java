@@ -12,7 +12,7 @@ public class TrabajadorDto {
     private Integer trabajadorid;
     private String nombre;
     private String apellido;
-    private boolean tipodocumento;
+    private String tipodocumento;
     private Integer numerodocumento;
     private Integer sedeid;
     private String nombresede;

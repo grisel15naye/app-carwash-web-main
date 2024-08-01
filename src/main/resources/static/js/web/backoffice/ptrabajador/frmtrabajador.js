@@ -76,7 +76,7 @@ function listarTrabajador(){
                 `<td>${value.trabajadorid}</td>`+
                 `<td>${value.nombre}</td>`+
                 `<td>${value.apellido}</td>`+
-                `<td>${value.tipodocumento ? "DNI" : "Pasaporte"}</td>`+
+                `<td>${value.tipodocumento }</td>`+
                 `<td>${value.numerodocumento}</td>`+
                 `<td>${value.nombresede}</td>`+
                 `<td>${value.telefono}</td>`+

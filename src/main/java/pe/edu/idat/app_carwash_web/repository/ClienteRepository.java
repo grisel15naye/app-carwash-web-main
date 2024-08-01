@@ -15,7 +15,7 @@ public interface ClienteRepository extends JpaRepository <Cliente,Integer> {
     void actualizarCliente(@Param("clienteid") Integer clienteid,
                               @Param("nombre")String nombre,
                               @Param("apellido")String apellido,
-                              @Param("tipodocumento")boolean tipodocumento,
+                              @Param("tipodocumento")String tipodocumento,
                               @Param("numerodocumento")Integer numerodocumento,
                               @Param("telefono") Integer telefono,
                               @Param("direccion")String direccion,

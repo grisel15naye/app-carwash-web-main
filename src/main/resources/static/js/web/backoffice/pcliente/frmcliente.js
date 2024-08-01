@@ -65,7 +65,7 @@ function listarClientes(){
                 `<td>${value.clienteid}</td>`+
                 `<td>${value.nombre}</td>`+
                 `<td>${value.apellido}</td>`+
-                `<td>${value.tipodocumento ? "DNI" : "PASAPORTE"}</td>`+
+                `<td>${value.tipodocumento}</td>`+
                 `<td>${value.numerodocumento}</td>`+
                 `<td>${value.telefono}</td>`+
                 `<td>${value.direccion}</td>`+

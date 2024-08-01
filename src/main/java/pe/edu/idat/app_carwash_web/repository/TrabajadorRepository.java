@@ -23,7 +23,7 @@ public interface TrabajadorRepository extends JpaRepository <Trabajador, Integer
     void actualizarTrabajador(@Param("trabajadorid") Integer trabajadorid,
                         @Param("nombre")String nombre,
                         @Param("apellido")String apellido,
-                        @Param("tipodocumento")boolean tipodocumento,
+                        @Param("tipodocumento")String tipodocumento,
                         @Param("numerodocumento")Integer numerodocumento,
                         @Param("sedeid")Integer sedeid,
                         @Param("telefono") Integer telefono,

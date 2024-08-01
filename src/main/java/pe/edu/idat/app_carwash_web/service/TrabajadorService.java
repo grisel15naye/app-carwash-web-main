@@ -25,7 +25,7 @@ public class TrabajadorService implements ITrabajadorService {
                     .trabajadorid(trab.getTrabajadorid())
                     .nombre(trab.getNombre())
                     .apellido(trab.getApellido())
-                    .tipodocumento(trab.isTipodocumento())
+                    .tipodocumento(trab.getTipodocumento())
                     .numerodocumento(trab.getNumerodocumento())
                     .telefono(trab.getTelefono())
                     .direccion(trab.getDireccion())
@@ -56,7 +56,7 @@ public class TrabajadorService implements ITrabajadorService {
                     trabajador.getTrabajadorid(),
                     trabajador.getNombre(),
                     trabajador.getApellido(),
-                    trabajador.isTipodocumento(),
+                    trabajador.getTipodocumento(),
                     trabajador.getNumerodocumento(),
                     trabajador.getSedeid(),
                     trabajador.getTelefono(),
@@ -69,7 +69,7 @@ public class TrabajadorService implements ITrabajadorService {
             Trabajador nuevoTrabajador = new Trabajador();
             nuevoTrabajador.setNombre(trabajador.getNombre());
             nuevoTrabajador.setApellido(trabajador.getApellido());
-            nuevoTrabajador.setTipodocumento(trabajador.isTipodocumento());
+            nuevoTrabajador.setTipodocumento(trabajador.getTipodocumento());
             nuevoTrabajador.setNumerodocumento(trabajador.getNumerodocumento());
             Sede sede= new Sede();
             sede.setSedeid(trabajador.getSedeid());
