@@ -11,10 +11,6 @@ import pe.edu.idat.app_carwash_web.model.bd.Usuario;
 @Repository
 public interface UsuarioRepository
         extends JpaRepository<Usuario, Integer> {
-
-    /*SELECT * FROM USUARIO WHERE NOMUSUARIO = @Parametro and Estado = @Parametro2
-    Usuario findByNomusuarioAndActivo(String nomusuario, boolean estado);
-    */
     Usuario findByNomusuario(String nomusuario);
 
     @Transactional

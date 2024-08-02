@@ -29,7 +29,7 @@ public class LoginController {
                         .getAuthentication().getPrincipal();
         UsuarioSecurityDto securityDto = (UsuarioSecurityDto) userDetails;
         session.setAttribute("nomusuario",
-                securityDto.getIdusuario());
+                securityDto.getEmail());
         return "auth/home";
     }
 

@@ -18,24 +18,21 @@ import java.util.Set;
 
 @AllArgsConstructor
 @Service
-public class DetalleUsuarioService
-        implements UserDetailsService {
+public class DetalleUsuarioService implements UserDetailsService {
     private UsuarioRepository usuarioRepository;
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository
                 .findByNomusuario(username);
-        return obtenerUsuarioSecurity(usuario,
-                rolesUsuario(usuario.getRoles()));
+        return obtenerUsuarioSecurity(usuario, rolesUsuario(usuario.getRoles()));
     }
     private List<GrantedAuthority> rolesUsuario(
             Set<Rol> roles
     ){
         List<GrantedAuthority> authorityList = new ArrayList<>();
         for(Rol rol: roles){
-            authorityList.add(new
-                    SimpleGrantedAuthority(rol.getNomrol()));
+            authorityList.add(new SimpleGrantedAuthority(rol.getNomrol()));
         }
         return authorityList;
     }
