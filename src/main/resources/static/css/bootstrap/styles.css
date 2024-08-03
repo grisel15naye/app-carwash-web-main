@@ -11241,20 +11241,3 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
-
-.dias-y-horas {
-    display: flex;
-    justify-content: space-between;
-}
-
-.dias {
-    flex: 1;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    margin-right: 20px;
-}
-
-.horas {
-    flex: 1;
-}
