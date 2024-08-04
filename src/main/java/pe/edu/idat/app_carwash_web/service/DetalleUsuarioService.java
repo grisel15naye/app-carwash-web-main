@@ -48,6 +48,7 @@ public class DetalleUsuarioService implements UserDetailsService {
                 true, authorityList);
         securityDto.setEmail(usuario.getEmail());
         securityDto.setIdusuario(usuario.getIdusuario());
+        securityDto.setNombreCompleto(usuario.getNombres() + " " + usuario.getApellidos());
         return securityDto;
     }
 }

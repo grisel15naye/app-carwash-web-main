@@ -28,8 +28,11 @@ public class LoginController {
                 SecurityContextHolder.getContext()
                         .getAuthentication().getPrincipal();
         UsuarioSecurityDto securityDto = (UsuarioSecurityDto) userDetails;
+
         session.setAttribute("nomusuario",
-                securityDto.getEmail());
+                securityDto.getUsername());
+        session.setAttribute("nombreCompleto", securityDto.getNombreCompleto());
+
         return "auth/home";
     }
 

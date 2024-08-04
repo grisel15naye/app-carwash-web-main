@@ -9,10 +9,10 @@ import java.util.Collection;
 
 @Getter
 @Setter
-public class UsuarioSecurityDto
-        extends User {
+public class UsuarioSecurityDto extends User {
     private String email;
     private Integer idusuario;
+    private String nombreCompleto;
     public UsuarioSecurityDto(String username,
                               String password,
                               boolean enabled,

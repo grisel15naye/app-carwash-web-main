@@ -10,13 +10,12 @@
     <script th:src="@{/js/bootstrap/bootstrap.bundle.js}" type="text/javascript"></script>
 </head>
 <body>
-<nav th:fragment="menu" class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav th:fragment="menu" class="navbar navbar-expand-lg navbar-dark bg-primary" >
     <div class="navbar-lateral">
-        <h1>Bienvenido Administrador</h1>
+        <h1>CARWASH RESERCAR</h1>
         <div class="nav-lateral-list-menu">
             <ul class="list-unstyled">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Mis Datos</a></li>
+                <li><a th:href="@{/auth/dashboard}">Deshboard</a></li>
                 <li>
                     <div class="dropdown-menu-button">GESTIONAR USUARIOS</div>
                     <ul class="list-unstyled">
@@ -53,6 +52,19 @@
             </form>
         </div>
     </div>
+    <div class="top-bar">
+        <span th:text="'Bienvenido Adminnistrador(a) ' + ${session.nombreCompleto}"></span>
+        <div class="dropdown">
+            <button class="dropbtn">☺ </button>
+            <div class="dropdown-content">
+                <li><a class="list-unstyled" th:href="@{/misdatos}">Mis Datos</a></li>
+                <form class="d-flex" role="search" th:action="@{/logout}">
+                    <button type="submit" class="btn btn-success">Cerrar Sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </nav>
+
 </body>
 </html>
