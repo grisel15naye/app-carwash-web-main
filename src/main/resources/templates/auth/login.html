@@ -3,30 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <title>Autenticación</title>
-    <link th:href="@{/css/bootstrap/bootstrap.css}"
-          rel="stylesheet" />
-    <script th:src="@{/js/bootstrap/bootstrap.bundle.js}"
-            type="text/javascript"></script>
-
+    <link th:href="@{/css/bootstrap/bootstrap.css}" rel="stylesheet" />
+    <link th:href="@{/css/bootstrap/styles.css}" rel="stylesheet" />
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/foto-gratis/carreras-autos-deportivos-traves-ia-generativa-movimiento-borroso-oscuro_188544-12490.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1722556800&semt=ais_hybrid'); /* Reemplaza con la ruta de tu imagen */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.2); /* Transparencia */
+            backdrop-filter: blur(10px); /* Efecto de desenfoque */
+            border: none;
+            border-radius: 20px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .card-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .form-floating {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .form-control {
+            background: none;
+            border: 1px solid white;
+            color: white;
+        }
+        .form-control::placeholder {
+            color: white;
+        }
+        .form-control:focus {
+            border-color: #ffffff;
+            box-shadow: none;
+        }
+        .form-floating label {
+            color: white;
+        }
+        .btn-primary {
+            background-color: #6c757d;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #5a6268;
+        }
+        .btn-secondary {
+            background-color: transparent;
+            border: none;
+            color: white;
+            margin-top: 10px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+    </style>
+    <script th:src="@{/js/bootstrap/bootstrap.bundle.js}" type="text/javascript"></script>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const toggleButton = document.getElementById('togglePassword');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleButton.textContent = '◡';
+            } else {
+                passwordField.type = 'password';
+                toggleButton.textContent = '◉';
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="card">
     <div class="card-header">
-        Featured
+        Iniciar Sesión
     </div>
     <div class="card-body">
         <form th:action="@{/auth/login}" method="post">
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control"
-                       name="nomusuario" id="nomusuario" placeholder="name@example.com">
+            <div class="form-floating">
+                <input type="text" class="form-control" name="nomusuario" id="nomusuario" placeholder="Usuario">
                 <label for="nomusuario">Usuario</label>
             </div>
-            <div class="form-floating">
-                <input type="password" class="form-control"
-                       id="password" name="password" placeholder="Password">
+            <div class="form-floating" style="position: relative;">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 <label for="password">Password</label>
+                <button type="button" class="btn btn-secondary" id="togglePassword" onclick="togglePasswordVisibility()">◉</button>
             </div>
-            <button type="submit" class="btn btn-primary">INGRESAR</button>
+            <button type="submit" class="btn btn-primary w-100">INGRESAR</button>
         </form>
     </div>
 </div>
