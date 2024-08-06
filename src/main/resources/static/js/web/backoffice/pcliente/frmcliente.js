@@ -8,7 +8,7 @@ $(document).on("click", "#btnagregar", function(){
     $("#switchcliente").hide();
     $("#cbestadocliente").prop("checked", false);
     $("#hddcodcliente").val("0");
-    $("#modalcliente").modal("show");
+    $("#modalCliente").modal("show");
 });
 
 $(document).on("click", ".btnactualizar", function(){
@@ -25,7 +25,7 @@ $(document).on("click", ".btnactualizar", function(){
         $("#cbestadocliente").prop("checked", false);
     }
     $("#hddcodcliente").val($(this).attr("data-clienteid"));
-    $("#modalcliente").modal("show");
+    $("#modalCliente").modal("show");
 });
 
 $(document).on("click", "#btnguardar", function(){
@@ -50,7 +50,7 @@ $(document).on("click", "#btnguardar", function(){
             alert(resultado.mensaje);
         }
     });
-    $("#modalcliente").modal("hide");
+    $("#modalCliente").modal("hide");
 });
 
 function listarClientes(){

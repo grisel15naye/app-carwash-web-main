@@ -53,9 +53,9 @@
         </div>
     </div>
     <div class="top-bar">
-        <span th:text="'Bienvenido Adminnistrador(a) ' + ${session.nombreCompleto}"></span>
+        <span th:text="'Bienvenido Administrador(a) ' + ${session.nombreCompleto}"></span>
         <div class="dropdown">
-            <button class="dropbtn">☺ </button>
+            <button class="dropbtn">☺</button>
             <div class="dropdown-content">
                 <li><a class="list-unstyled" th:href="@{/misdatos}">Mis Datos</a></li>
                 <form class="d-flex" role="search" th:action="@{/logout}">

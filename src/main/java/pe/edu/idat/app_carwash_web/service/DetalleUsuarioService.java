@@ -25,6 +25,7 @@ public class DetalleUsuarioService implements UserDetailsService {
             throws UsernameNotFoundException {
         Usuario usuario = usuarioRepository
                 .findByNomusuario(username);
+
         return obtenerUsuarioSecurity(usuario, rolesUsuario(usuario.getRoles()));
     }
     private List<GrantedAuthority> rolesUsuario(

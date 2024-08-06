@@ -32,29 +32,17 @@ public class ClienteController {
     @ResponseBody
     public RespuestaGeneral guardarCliente(
             @RequestBody Cliente cliente){
-        String mensaje = "Producto registrado correctamente";
+        String mensaje = "Cliente registrado correctamente";
         boolean resultado = true;
         try {
             iClienteService.guardarCliente(cliente);
         }catch (Exception ex){
-            mensaje = "Error: Ocurrio un error al conectarse a la BD";
+            mensaje = "a ocurrido un error";
             resultado = false;
         }
         return RespuestaGeneral.builder().mensaje(mensaje)
                 .resultado(resultado).build();
-    }
-    @PostMapping("/actualizar")
-    @ResponseBody
-    public RespuestaGeneral actualizarCliente(@RequestBody Cliente cliente) {
-        String mensaje = "Cliente actualizado correctamente";
-        boolean resultado = true;
-        try {
-            iClienteService.guardarCliente(cliente); // Aquí llamamos a guardarCliente para que se guarden los cambios.
-        } catch (Exception ex) {
-            mensaje = "Error: Ocurrio un error al conectarse a la BD";
-            resultado = false;
-        }
-        return RespuestaGeneral.builder().mensaje(mensaje).resultado(resultado).build();
+
     }
 }
 
