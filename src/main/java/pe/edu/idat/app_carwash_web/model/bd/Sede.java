@@ -1,5 +1,6 @@
 package pe.edu.idat.app_carwash_web.model.bd;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

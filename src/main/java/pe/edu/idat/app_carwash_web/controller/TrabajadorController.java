@@ -1,5 +1,3 @@
-package pe.edu.idat.app_carwash_web.controller;
-
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
