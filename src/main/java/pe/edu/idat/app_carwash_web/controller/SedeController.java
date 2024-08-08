@@ -35,7 +35,7 @@ public class SedeController {
     @ResponseBody
     public RespuestaGeneral guardarSede(
             @RequestBody Sede sede) {
-        String mensaje = "Producto registrado correctamente";
+        String mensaje = "Sede registrado correctamente";
         boolean resultado = true;
         try {
             iSedeService.guardarSede(sede);

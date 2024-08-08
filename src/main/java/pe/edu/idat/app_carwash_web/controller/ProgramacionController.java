@@ -30,7 +30,7 @@ public class ProgramacionController {
     @ResponseBody
     public RespuestaGeneral guardarProgramacion(
             @RequestBody ProgramacionDto productDto){
-        String mensaje = "Producto registrado correctamente";
+        String mensaje = "Programacion registrado correctamente";
         boolean resultado = true;
         try {
             iProgramacionService.guardarProgramacion(productDto);

@@ -34,7 +34,7 @@ public class TrabajadorController {
     @ResponseBody
     public RespuestaGeneral guardarTrabajador(
             @RequestBody TrabajadorDto trabajadorDto) {
-        String mensaje = "Producto registrado correctamente";
+        String mensaje = "Trabajador registrado correctamente";
         boolean resultado = true;
         try {
             iTrabajadorService.guardarTrabajador(trabajadorDto);

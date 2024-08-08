@@ -47,24 +47,24 @@ $(document).on("click", "#btnguardar", function(){
     const telefono = $("#txttelefono").val();
 
     if (!nombre) {
-        $("#errorNombre").text("El nombre no debe ser nulo.");
+        $("#errorNombre").text("El nombre no debe estar vacío");
         $("#txtnombre").addClass("is-invalid");
         isValid = false;
     }
 
     if (!apellido) {
-        $("#errorApellido").text("El apellido no debe ser nulo.");
+        $("#errorApellido").text("El apellido no debe estar vacío");
         $("#txtapellido").addClass("is-invalid");
         isValid = false;
     }
 
     if (!tipodocumento) {
-        $("#errorTipoDocumento").text("Debe seleccionar un tipo de documento.");
+        $("#errorTipoDocumento").text("El tipo de documento no debe estar vacío");
         $("#txttipodocumento").addClass("is-invalid");
         isValid = false;
     } else {
         if (!numerodocumento) {
-            $("#errorNumeroDocumento").text("El número de documento no debe ser nulo.");
+            $("#errorNumeroDocumento").text("El número de documento no debe estar vacío");
             $("#txtnumerodocumento").addClass("is-invalid");
             isValid = false;
         } else {
