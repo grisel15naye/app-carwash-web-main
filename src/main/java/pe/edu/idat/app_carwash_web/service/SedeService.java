@@ -20,6 +20,15 @@ public class SedeService implements  ISedeService{
 
     @Override
     public Sede guardarSede(Sede sede) {
+        if (sede.getNombresede() == null || sede.getNombresede().isEmpty()) {
+            throw new IllegalArgumentException("El nombre de la sede no puede estar vacío.");
+        }
+        if (sede.getHoraabierto() == null) {
+            throw new IllegalArgumentException("La hora de apertura no puede estar vacía.");
+        }
+        if (sede.getHoracierre() == null) {
+            throw new IllegalArgumentException("La hora de cierre no puede estar vacía.");
+        }
         return sedeRepository.save(sede);
     }
 

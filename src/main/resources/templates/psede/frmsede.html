@@ -85,10 +85,12 @@
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="txtnombresede" placeholder="Nombre de la sede">
                     <label for="txtnombresede">Nombre de la sede</label>
+                    <div class="invalid-feedback" id="errorNombreSede"></div>
                 </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="txtsedeinfo" placeholder="Información de la sede">
                     <label for="txtsedeinfo">Información de la sede</label>
+
                 </div>
                 <div class="dias-y-horas">
                     <div class="dias">
@@ -126,6 +128,7 @@
                         <div class="form-floating mb-3">
                             <input type="time" class="form-control" id="txthoraabierto" placeholder="Hora de Apertura">
                             <label for="txthoraabierto">Hora de Apertura</label>
+                            <div class="invalid-feedback" id="errorHoraAbierto"></div>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="time" class="form-control" id="txthoracierre" placeholder="Hora de Cierre">
@@ -134,6 +137,7 @@
                         <div class="form-check form-switch" id="switchsede">
                             <input class="form-check-input" type="checkbox" role="switch" id="cbestadosede">
                             <label class="form-check-label" for="cbestadosede">Estado de la Sede</label>
+                            <div class="invalid-feedback" id="errorHoraCierre"></div>
                         </div>
                     </div>
                 </div>

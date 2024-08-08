@@ -51,6 +51,47 @@ public class TrabajadorService implements ITrabajadorService {
     }
     @Override
     public void guardarTrabajador(TrabajadorDto trabajador) {
+        if (trabajador.getNombre() == null || trabajador.getNombre().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no debe estar vacío");
+        }
+        if (trabajador.getApellido() == null || trabajador.getApellido().isEmpty()) {
+            throw new IllegalArgumentException("El apellido no debe estar vacío");
+        }
+        if (trabajador.getTipodocumento() == null || trabajador.getTipodocumento().isEmpty()) {
+            throw new IllegalArgumentException("El tipo de documento no debe estar vacío");
+        }
+        if (trabajador.getNumerodocumento() == null) {
+            throw new IllegalArgumentException("El número de documento no debe estar vacío");
+        }
+
+        String tipoDocumento = trabajador.getTipodocumento();
+        String numeroDocumento = trabajador.getNumerodocumento().toString();
+
+        switch (tipoDocumento) {
+            case "DNI":
+                if (numeroDocumento.length() != 8) {
+                    throw new IllegalArgumentException("El DNI debe tener 8 dígitos");
+                }
+                break;
+            case "RUC":
+                if (numeroDocumento.length() != 11) {
+                    throw new IllegalArgumentException("El RUC debe tener 11 dígitos");
+                }
+                break;
+            case "PASAPORTE":
+                if (numeroDocumento.length() != 20) {
+                    throw new IllegalArgumentException("El pasaporte debe tener 20 dígitos");
+                }
+                break;
+            default:
+                throw new IllegalArgumentException("Tipo de documento no válido");
+        }
+
+        if (trabajador.getTelefono() == null || trabajador.getTelefono().toString().length() != 9) {
+            throw new IllegalArgumentException("El teléfono debe tener 9 dígitos");
+        }
+
+        // Guardar el trabajador
         if (trabajador.getTrabajadorid() > 0) {
             trabajadorRepository.actualizarTrabajador(
                     trabajador.getTrabajadorid(),
@@ -71,7 +112,7 @@ public class TrabajadorService implements ITrabajadorService {
             nuevoTrabajador.setApellido(trabajador.getApellido());
             nuevoTrabajador.setTipodocumento(trabajador.getTipodocumento());
             nuevoTrabajador.setNumerodocumento(trabajador.getNumerodocumento());
-            Sede sede= new Sede();
+            Sede sede = new Sede();
             sede.setSedeid(trabajador.getSedeid());
             nuevoTrabajador.setSede(sede);
             nuevoTrabajador.setTelefono(trabajador.getTelefono());
@@ -80,7 +121,6 @@ public class TrabajadorService implements ITrabajadorService {
             nuevoTrabajador.setFechacontratacion(trabajador.getFechacontratacion());
             nuevoTrabajador.setEstadotrab(true);
             trabajadorRepository.save(nuevoTrabajador);
-
         }
     }
 

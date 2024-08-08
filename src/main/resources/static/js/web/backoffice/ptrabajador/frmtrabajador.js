@@ -10,7 +10,7 @@ $(document).on("click", "#btnagregar", function(){
     $("#txtsalario").val("");
     $("#txtfechacontratacion").val("");
     $("#switchtrabajador").hide();
-    $("#cbestadotrabajador").prop("checked", false);
+    $("#cbestadotrab").prop("checked", true);
     $("#hddcodtrab").val("0");
     $("#modaltrabajador").modal("show");
 });
@@ -27,41 +27,97 @@ $(document).on("click", ".btnactualizar", function(){
     $("#txtsalario").val($(this).attr("data-trabsalario"));
     $("#txtfechacontratacion").val($(this).attr("data-trabfechacontratacion"));
     $("#switchtrabajador").show();
-    if ($(this).attr("data-trabestado") === "true"){
-        $("#cbestadotrabajador").prop("checked", true);
-    } else {
-        $("#cbestadotrabajador").prop("checked", false);
-    }
+    $("#cbestadotrab").prop("checked", $(this).attr("data-trabestadotrab") === "true");
     $("#hddcodtrab").val($(this).attr("data-trabcod"));
     $("#modaltrabajador").modal("show");
 });
 
 $(document).on("click", "#btnguardar", function(){
-    $.ajax({
-        type: "POST",
-        url: "/trabajadores/registrar",
-        contentType: "application/json",
-        data: JSON.stringify({
-            trabajadorid: $("#hddcodtrab").val(),
-            nombre: $("#txtnombre").val(),
-            apellido: $("#txtapellido").val(),
-            tipodocumento: $("#txttipodocumento").val(),
-            numerodocumento: $("#txtnumerodocumento").val(),
-            sedeid: $("#cbosede").val(),
-            telefono: $("#txttelefono").val(),
-            direccion: $("#txtdireccion").val(),
-            salario: $("#txtsalario").val(),
-            fechacontratacion: $("#txtfechacontratacion").val(),
-            estadotrab: $("#cbestadotrabajador").prop("checked")
-        }),
-        success: function(resultado){
-            if(resultado.resultado){
-                listarTrabajador();
+    // Limpiar mensajes de error
+    $(".invalid-feedback").text("");
+    $(".form-control").removeClass("is-invalid");
+
+    // Validaciones
+    let isValid = true;
+
+    const nombre = $("#txtnombre").val();
+    const apellido = $("#txtapellido").val();
+    const tipodocumento = $("#txttipodocumento").val();
+    const numerodocumento = $("#txtnumerodocumento").val();
+    const telefono = $("#txttelefono").val();
+
+    if (!nombre) {
+        $("#errorNombre").text("El nombre no debe ser nulo.");
+        $("#txtnombre").addClass("is-invalid");
+        isValid = false;
+    }
+
+    if (!apellido) {
+        $("#errorApellido").text("El apellido no debe ser nulo.");
+        $("#txtapellido").addClass("is-invalid");
+        isValid = false;
+    }
+
+    if (!tipodocumento) {
+        $("#errorTipoDocumento").text("Debe seleccionar un tipo de documento.");
+        $("#txttipodocumento").addClass("is-invalid");
+        isValid = false;
+    } else {
+        if (!numerodocumento) {
+            $("#errorNumeroDocumento").text("El número de documento no debe ser nulo.");
+            $("#txtnumerodocumento").addClass("is-invalid");
+            isValid = false;
+        } else {
+            if (tipodocumento === "DNI" && numerodocumento.length !== 8) {
+                $("#errorNumeroDocumento").text("El DNI debe tener 8 dígitos.");
+                $("#txtnumerodocumento").addClass("is-invalid");
+                isValid = false;
+            } else if (tipodocumento === "RUC" && numerodocumento.length !== 11) {
+                $("#errorNumeroDocumento").text("El RUC debe tener 11 dígitos.");
+                $("#txtnumerodocumento").addClass("is-invalid");
+                isValid = false;
+            } else if (tipodocumento === "PASAPORTE" && numerodocumento.length !== 20) {
+                $("#errorNumeroDocumento").text("El pasaporte debe tener 20 dígitos.");
+                $("#txtnumerodocumento").addClass("is-invalid");
+                isValid = false;
             }
-            alert(resultado.mensaje);
         }
-    });
-    $("#modaltrabajador").modal("hide");
+    }
+
+    if (!telefono || telefono.length !== 9) {
+        $("#errorTelefono").text("El teléfono debe tener 9 dígitos.");
+        $("#txttelefono").addClass("is-invalid");
+        isValid = false;
+    }
+
+    if (isValid) {
+        // Enviar solicitud AJAX
+        $.ajax({
+            type: "POST",
+            url: "/trabajadores/registrar",
+            contentType: "application/json",
+            data: JSON.stringify({
+                trabajadorid: $("#hddcodtrab").val(),
+                nombre: nombre,
+                apellido: apellido,
+                tipodocumento: tipodocumento,
+                numerodocumento: numerodocumento,
+                sedeid: $("#cbosede").val(),
+                telefono: telefono,
+                direccion: $("#txtdireccion").val(),
+                salario: $("#txtsalario").val(),
+                fechacontratacion: $("#txtfechacontratacion").val(),
+                estadotrab: $("#cbestadotrab").prop("checked")
+            }),
+            success: function(resultado){
+                if(resultado.resultado){
+                    listarTrabajador();
+                }
+                alert(resultado.mensaje);
+            }
+        });
+        $("#modaltrabajador").modal("hide");
+    }
 });
 
 function listarTrabajador(){
@@ -83,7 +139,7 @@ function listarTrabajador(){
                 `<td>${value.direccion}</td>`+
                 `<td>${value.salario}</td>`+
                 `<td>${value.fechacontratacion}</td>`+
-                `<td>${value.estadotrab}</td>`+
+                `<td>${value.estadotrab ? 'activo' : 'inactivo'}</td>`+
                 `<td><button type="button" class="btn btn-info btnactualizar" `+
                 ` data-trabcod="${value.trabajadorid}" `+
                 ` data-trabnombre="${value.nombre}" `+

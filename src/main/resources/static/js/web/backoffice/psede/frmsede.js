@@ -12,7 +12,7 @@ $(document).on("click", "#btnagregar", function() {
     $("#txthoraabierto").val("");
     $("#txthoracierre").val("");
     $("#switchsede").hide();
-    $("#cbestadosede").prop("checked", false);
+    $("#cbestadosede").prop("checked", true);
     $("#hddcodsede").val("0");
     $("#modalSede").modal("show");
 });
@@ -36,33 +36,62 @@ $(document).on("click", ".btnactualizar", function() {
 });
 
 $(document).on("click", "#btnguardar", function() {
-    $.ajax({
-        type: "POST",
-        url: "/sedes/registrar",
-        contentType: "application/json",
-        data: JSON.stringify({
-            sedeid: $("#hddcodsede").val(),
-            nombresede: $("#txtnombresede").val(),
-            sedeinfo: $("#txtsedeinfo").val(),
-            lunes: $("#cblunes").prop("checked"),
-            martes: $("#cbmartes").prop("checked"),
-            miercoles: $("#cbmiercoles").prop("checked"),
-            jueves: $("#cbjueves").prop("checked"),
-            viernes: $("#cbviernes").prop("checked"),
-            sabado: $("#cbsabado").prop("checked"),
-            domingo: $("#cbdomingo").prop("checked"),
-            horaabierto: $("#txthoraabierto").val(),
-            horacierre: $("#txthoracierre").val(),
-            estadosede: $("#cbestadosede").prop("checked")
+    $(".invalid-feedback").text("");
+    $(".form-control").removeClass("is-invalid");
+
+        // Validaciones
+    let isValid = true;
+    const nombresede = $("#txtnombresede").val();
+    const horaabierto = $("#txthoraabierto").val();
+    const horacierre = $("#txthoracierre").val();
+
+    if (!nombresede) {
+        $("#errorNombreSede").text("El nombre no debe ser nulo.");
+        $("#txtnombresede").addClass("is-invalid");
+        isValid = false;
+    }
+
+    if (!horaabierto) {
+        $("#errorHoraAbierto").text("El apellido no debe ser nulo.");
+        $("#txthoraabierto").addClass("is-invalid");
+        isValid = false;
+    }
+
+    if (!horacierre) {
+        $("#errorHoraCierre").text("Debe seleccionar un tipo de documento.");
+        $("#txthoracierre").addClass("is-invalid");
+        isValid = false;
+    }
+
+    if (isValid) {
+        $.ajax({
+            type: "POST",
+            url: "/sedes/registrar",
+            contentType: "application/json",
+            data: JSON.stringify({
+                sedeid: $("#hddcodsede").val(),
+                nombresede: $("#txtnombresede").val(),
+                sedeinfo: $("#txtsedeinfo").val(),
+                lunes: $("#cblunes").prop("checked"),
+                martes: $("#cbmartes").prop("checked"),
+                miercoles: $("#cbmiercoles").prop("checked"),
+                jueves: $("#cbjueves").prop("checked"),
+                viernes: $("#cbviernes").prop("checked"),
+                sabado: $("#cbsabado").prop("checked"),
+                domingo: $("#cbdomingo").prop("checked"),
+                horaabierto: $("#txthoraabierto").val(),
+                horacierre: $("#txthoracierre").val(),
+                estadosede: $("#cbestadosede").prop("checked")
             }),
-            success: function(resultado){
-                if(resultado.resultado){
+            success: function(resultado) {
+                if (resultado.resultado) {
                     listarSedes();
                 }
                 alert(resultado.mensaje);
             }
-        }),
-    $("#modalSede").modal("hide");
+        });
+        $("#modalSede").modal("hide");
+    }
 });
 
 function listarSedes() {

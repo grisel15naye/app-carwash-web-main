@@ -78,23 +78,27 @@
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="txtnombre" placeholder="Nombre">
                         <label for="txtnombre">Nombre</label>
+                        <div class="invalid-feedback" id="errorNombre"></div>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="txtapellido" placeholder="Apellido">
                         <label for="txtapellido">Apellido</label>
+                        <div class="invalid-feedback" id="errorApellido"></div>
                     </div>
                     <div class="form-floating mb-3">
                         <select class="form-control" id="txttipodocumento">
                             <option value="DNI">DNI</option>
-                            <option value="PASAPORTE">PASAPORTE</option>
                             <option value="RUC">RUC</option>
+                            <option value="PASAPORTE">PASAPORTE</option>
                             <option value="OTRO">OTRO</option>
                         </select>
                         <label for="txttipodocumento">Tipo Documento</label>
+                        <div class="invalid-feedback" id="errorTipoDocumento"></div>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control" id="txtnumerodocumento" placeholder="Numero Documento">
                         <label for="txtnumerodocumento">Numero Documento</label>
+                        <div class="invalid-feedback" id="errorNumeroDocumento"></div>
                     </div>
                     <div class="mb-3">
                         <label for="cbosede">Seleccione una sede</label>
@@ -103,6 +107,7 @@
                     <div class="form-floating mb-3">
                         <input type="number" class="form-control" id="txttelefono" placeholder="Telefono">
                         <label for="txttelefono">Telefono</label>
+                        <div class="invalid-feedback" id="errorTelefono"></div>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="txtdireccion" placeholder="Direccion">
@@ -117,8 +122,8 @@
                         <label for="txtfechacontratacion">Fecha de Contratación</label>
                     </div>
                     <div class="form-check form-switch" id="switchtrabajador">
-                        <input class="form-check-input" type="checkbox" role="switch" id="cbestadotrabajador">
-                        <label class="form-check-label" for="cbestadotrabajador">Estado del Trabajador</label>
+                        <input class="form-check-input" type="checkbox" role="switch" id="cbestadotrab">
+                        <label class="form-check-label" for="cbestadotrab">Estado del Trabajador</label>
                     </div>
                     <input type="hidden" id="hddcodtrab" value="0">
                 </div>

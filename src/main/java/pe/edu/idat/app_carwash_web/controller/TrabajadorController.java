@@ -1,3 +1,5 @@
+package pe.edu.idat.app_carwash_web.controller;
+
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,23 +15,25 @@ import java.util.List;
 @RequestMapping("/trabajadores")
 public class TrabajadorController {
     private ITrabajadorService iTrabajadorService;
+
     @GetMapping("")
 
-    public String frmTrabajador (Model model){
+    public String frmTrabajador(Model model) {
         model.addAttribute("listtrabajador",
                 iTrabajadorService.listarTrabajador());
         return "ptrabajador/frmtrabajador";
     }
+
     @GetMapping("/listar")
     @ResponseBody
-    public List<TrabajadorDto> listarTrabajador(){
+    public List<TrabajadorDto> listarTrabajador() {
         return iTrabajadorService.listarTrabajador();
     }
 
     @PostMapping("/registrar")
     @ResponseBody
     public RespuestaGeneral guardarTrabajador(
-            @RequestBody TrabajadorDto trabajadorDto){
+            @RequestBody TrabajadorDto trabajadorDto) {
         String mensaje = "Producto registrado correctamente";
         boolean resultado = true;
         try {
