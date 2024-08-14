@@ -6,7 +6,7 @@ $(document).on("click", "#btnagregar", function(){
     $("#txttelefono").val("");
     $("#txtdireccion").val("");
     $("#switchcliente").hide();
-    $("#cbestadocliente").prop("checked", false);
+    $("#cbestadocliente").prop("checked", true);
     $("#hddcodcliente").val("0");
     $("#modalCliente").modal("show");
 });

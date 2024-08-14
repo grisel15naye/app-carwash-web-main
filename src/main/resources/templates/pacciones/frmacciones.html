@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="layout::head">
+    <meta charset="UTF-8">
+    <title>Mantenimiento de Acciones</title>
+</head>
+<body>
+<nav th:replace="layout::menu"></nav>
+<script th:src="@{/js/web/backoffice/pacciones/frmacciones.js}" type="text/javascript"></script>
+<div class="main-content">
+    <div class="card">
+        <div class="card-header">
+            Mantenimiento de Acciones
+        </div>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary" id="btnagregar" data-toggle="modal" data-target="#modalAcciones">Agregar</button>
+            <hr />
+            <div id="divmensaje"></div>
+            <table id="tblacciones" class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Estado</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="acciones : ${listacciones}">
+                    <td th:text="${acciones.accionesid}"></td>
+                    <td th:text="${acciones.descripcion}"></td>
+                    <td th:text="${acciones.precio}"></td>
+                    <td th:text="${acciones.estadoacc}"></td>
+                    <td>
+                        <button type="button" class="btn btn-info btnactualizar"
+                                data-toggle="modal" data-target="#modalAcciones"
+                                th:data-accionesid="${acciones.accionesid}"
+                                th:data-descripcion="${acciones.descripcion}"
+                                th:data-precio="${acciones.precio}"
+                                th:data-estadoacc="${acciones.estadoacc}">Actualizar
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalAcciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Acciones</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="txtdescripcion" placeholder="Descripcion">
+                        <label for="txtdescripcion">Descripcion</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="txtprecio" placeholder="Precio">
+                        <label for="txtprecio">Precio</label>
+                    </div>
+                    <div class="form-check form-switch" id="switchaccion">
+                        <input class="form-check-input" type="checkbox" role="switch" id="cbestadoacc">
+                        <label class="form-check-label" for="cbestadoacc">Estado de accion</label>
+                    </div>
+                    <input type="hidden" id="hddcodacciones" value="0">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button id="btnguardar" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
