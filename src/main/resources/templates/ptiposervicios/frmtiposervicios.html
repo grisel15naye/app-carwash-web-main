@@ -2,75 +2,189 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="layout::head">
     <meta charset="UTF-8">
-    <title>Mantenimiento de Acciones</title>
+    <title>Mantenimiento de Tipo Servicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <nav th:replace="layout::menu"></nav>
-<script th:src="@{/js/web/backoffice/pacciones/frmtiposervicios.js}" type="text/javascript"></script>
+
+<!-- Incluye jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- Incluye Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/web/backoffice/ptiposervicios/frmtiposervicios.js}" type="text/javascript"></script>
+
 <div class="main-content">
     <div class="card">
         <div class="card-header">
-            Mantenimiento de Tiposervicios
+            Mantenimiento de Tipo Servicios
         </div>
         <div class="card-body">
-            <button type="button" class="btn btn-primary" id="btnagregar" data-toggle="modal" data-target="#modalAcciones">Agregar</button>
+            <button type="button" class="btn btn-primary" id="btnagregar" data-bs-toggle="modal" data-bs-target="#modalAgregar">Agregar</button>
             <hr />
             <div id="divmensaje"></div>
-            <table id="tblacciones" class="table">
+            <table id="tbltservicio" class="table">
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Precio</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Tipo Vehiculo</th>
+                    <th scope="col">Precio Total</th>
                     <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
+                    <th scope="col">Actualizar</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="acciones : ${listacciones}">
-                    <td th:text="${acciones.accionesid}"></td>
-                    <td th:text="${acciones.descripcion}"></td>
-                    <td th:text="${acciones.precio}"></td>
-                    <td th:text="${acciones.estadoacc}"></td>
-                    <td>
-                        <button type="button" class="btn btn-info btnactualizar"
-                                data-toggle="modal" data-target="#modalAcciones"
-                                th:data-accionesid="${acciones.accionesid}"
-                                th:data-descripcion="${acciones.descripcion}"
-                                th:data-precio="${acciones.precio}"
-                                th:data-estadoacc="${acciones.estadoacc}">Actualizar
-                        </button>
-                    </td>
-                </tr>
+                <!-- Aquí se llenarán las filas dinámicamente -->
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modalAcciones" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal para ver acciones -->
+    <div class="modal fade" id="modalVerAcciones" tabindex="-1" aria-labelledby="modalVerAccionesLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Acciones</h1>
+                    <h1 class="modal-title fs-5" id="modalVerAccionesLabel">Acciones</h1>
                 </div>
                 <div class="modal-body">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="txtdescripcion" placeholder="Descripcion">
-                        <label for="txtdescripcion">Descripcion</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="number" class="form-control" id="txtprecio" placeholder="Precio">
-                        <label for="txtprecio">Precio</label>
-                    </div>
-                    <div class="form-check form-switch" id="switchaccion">
-                        <input class="form-check-input" type="checkbox" role="switch" id="cbestadoacc">
-                        <label class="form-check-label" for="cbestadoacc">Estado de accion</label>
-                    </div>
-                    <input type="hidden" id="hddcodacciones" value="0">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tblaccionesbody">
+                        <!-- Aquí se llenarán las acciones -->
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button id="btnguardar" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para agregar un nuevo Tipo de Servicio -->
+    <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalAgregarLabel">Agregar Tipo de Servicio</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="txtAgregarDescripcion" placeholder="Descripción">
+                        <label for="txtAgregarDescripcion">Descripción</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="txtAgregarTipoVehiculo" placeholder="Tipo de Vehículo">
+                        <label for="txtAgregarTipoVehiculo">Tipo de Vehículo</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="cbAgregarEstado">
+                        <label class="form-check-label" for="cbAgregarEstado">Estado</label>
+                    </div>
+
+                    <!-- Tabla de acciones -->
+                    <div class="mb-3">
+                        <label>Acciones disponibles</label>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Seleccionar</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Estado</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tblAgregarAccionesBody">
+                            <!-- Aquí se llenarán las filas dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button id="btnGuardarAgregar" type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Actualizar Tipo de Servicio -->
+    <div class="modal fade" id="modalAcciones" tabindex="-1" aria-labelledby="modalAccionesLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAccionesLabel">Actualizar Tipo de Servicio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formActualizarTipoServicio">
+                        <div class="mb-3">
+                            <label for="txtdescripcion" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="txtdescripcion" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtTipoVehiculo" class="form-label">Tipo de Vehículo</label>
+                            <input type="text" class="form-control" id="txtTipoVehiculo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cbestadoacc" class="form-label">Estado</label>
+                            <input type="checkbox" class="form-check-input" id="cbestadoacc">
+                        </div>
+                        <input type="hidden" id="hddcodacciones">
+
+                        <!-- Sección para Acciones Actuales -->
+                        <div class="mb-3">
+                            <label class="form-label">Acciones Asociadas</label>
+                            <table class="table" id="tblAccionesActualizar">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Descripción</th>
+                                    <th>Precio</th>
+                                    <th>Estado</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tblaccionesbody">
+                                <!-- Filas de acciones actuales se agregarán aquí dinámicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Sección para Seleccionar Nuevas Acciones -->
+                        <div class="mb-3">
+                            <label class="form-label">Seleccionar Nuevas Acciones</label>
+                            <table class="table" id="tblNuevasAcciones">
+                                <thead>
+                                <tr>
+                                    <th>Seleccionar</th>
+                                    <th>ID</th>
+                                    <th>Descripción</th>
+                                    <th>Precio</th>
+                                    <th>Estado</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tblNuevasAccionesBody">
+                                <!-- Filas de nuevas acciones se agregarán aquí dinámicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardarCambios">Guardar Cambios</button>
                 </div>
             </div>
         </div>

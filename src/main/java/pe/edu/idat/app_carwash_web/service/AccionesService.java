@@ -50,8 +50,21 @@ public class AccionesService implements IAccionService{
 
 
     @Override
-    public Acciones obtenerAcciones (Integer idacciones){
-        return accionesRepository.findById(idacciones).orElse(null);
+    public List<AccionesDto> obtenerAccionesPorIds(List<Integer> ids) {
+        List<AccionesDto> accionesDtos = new ArrayList<>();
+        List<Acciones> accionesList = accionesRepository.findAllById(ids);
+
+        for (Acciones accion : accionesList) {
+            AccionesDto dto = AccionesDto.builder()
+                    .accionesid(accion.getAccionesid())
+                    .descripcion(accion.getDescripcion())
+                    .precio(accion.getPrecio())
+                    .estadoacc(accion.isEstadoacc())
+                    .build();
+            accionesDtos.add(dto);
+        }
+
+        return accionesDtos;
     }
 }
 

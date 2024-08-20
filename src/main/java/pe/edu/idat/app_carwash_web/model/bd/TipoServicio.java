@@ -15,12 +15,10 @@ import java.util.Set;
 public class TipoServicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer tiposervicioID;
+    private Integer tiposervicioid;
     private String descripciontps;
     private String tipovehiculo;
     private Boolean estadotps;
-    @Transient
-    private double totalAccionesPrecio;
     @OneToMany(mappedBy = "tiposervicio",
     cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
